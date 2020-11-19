@@ -1,5 +1,6 @@
 <template>
     <div>
+      <!-- 侧边栏 ：采用element-ui卡片-->
         <el-card shadow="never">
             <el-menu :default-active="active" @select="onSelect">
                 <el-menu-item v-for="item in constantRouterMap" v-if="item.meta&&item.meta.type=='user'&&(token||!item.meta.LoginRequired)&&(!mini||!item.meta.mini)"
@@ -10,6 +11,7 @@
             </el-menu>
         </el-card>
 
+        <!-- token 获取栏 -->
         <el-card shadow="never" style="margin-top: 20px;text-align: center">
             <div v-if="!token" style="font-size: 0.9rem;line-height: 1.5;color: #606c71;">
                 <el-tag type="danger" size="small">&nbsp;</el-tag>&nbsp;&nbsp; Token未绑定&nbsp;&nbsp;
@@ -25,6 +27,7 @@
                 </el-alert>
             </div>
         </el-card>
+        <!-- token对话框 -->
         <token-dialog ref="tokenDialog"></token-dialog>
     </div>
 </template>
@@ -62,7 +65,7 @@
             },
             openTokenDialog() {
                 this.$refs.tokenDialog.open(() => {
-           
+
                 })
             },
             cancellation() {
